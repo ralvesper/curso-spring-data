@@ -1,5 +1,6 @@
 package br.com.devmedia.curso;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 
 import br.com.devmedia.curso.entity.Address;
 import br.com.devmedia.curso.entity.Address.TypeAddress;
@@ -48,7 +53,61 @@ public class CursoSpringDataApplication implements CommandLineRunner {
 		//testDelete();
 		//testSavePersons();
 		//testDeletePersons();
+		//testFindAndSort();
+		//testFindByIds();
+		//testExists();
+		testPagination();
 	
+	}
+
+	private void testPagination() {
+		
+		Page<Person> pages = personRepository.findAll(new PageRequest(0, 3));
+		pages.forEach(System.out::println);
+		
+		pages = personRepository.findAll(new PageRequest(1, 3));
+		pages.forEach(System.out::println);
+		
+		pages = personRepository.findAll(new PageRequest(2, 3));
+		pages.forEach(System.out::println);
+		
+		pages = personRepository.findAll(new PageRequest(3, 3));
+		pages.forEach(System.out::println);
+		
+		pages = personRepository.findAll(new PageRequest(3, 3));
+		pages.forEach(System.out::println);
+		
+		
+		
+	}
+
+	private void testExists() {
+		boolean P1 = personRepository.exists(1L);
+		boolean P2 = personRepository.exists(4L);
+		
+		System.out.println("P1 is "+P1);
+		System.out.println("P2 is "+P2);
+		
+	}
+
+	private void testFindByIds() {
+		
+		List<Person> lista = personRepository.findAll(Arrays.asList(2L,4L,10L,16L,21L));
+		lista.forEach(System.out::println);
+		
+	}
+
+	private void testFindAndSort() {
+		
+		Order orderAsc = new Order(Direction.ASC,"lastName");	
+		Order orderDesc = new Order(Direction.ASC,"firstName");	
+	
+		Sort sort = new Sort(orderAsc,orderDesc);
+		
+		List<Person> lista = personRepository.findAll(sort);
+		
+		lista.forEach(System.out::println);
+		
 	}
 
 	private void testDeletePersons() {
