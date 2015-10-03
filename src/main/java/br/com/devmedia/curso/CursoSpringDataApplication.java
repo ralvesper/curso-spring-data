@@ -1,7 +1,5 @@
 package br.com.devmedia.curso;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,10 +15,10 @@ import org.springframework.data.domain.Sort.Order;
 
 import br.com.devmedia.curso.entity.Address;
 import br.com.devmedia.curso.entity.Address.TypeAddress;
-import br.com.devmedia.curso.entity.Phone.TypePhone;
 import br.com.devmedia.curso.entity.Document;
 import br.com.devmedia.curso.entity.Person;
 import br.com.devmedia.curso.entity.Phone;
+import br.com.devmedia.curso.entity.Phone.TypePhone;
 import br.com.devmedia.curso.repository.AddressRepository;
 import br.com.devmedia.curso.repository.DocumentRepository;
 import br.com.devmedia.curso.repository.PersonRepository;
